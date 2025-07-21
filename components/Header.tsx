@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         </div>
 
         <a
-          href="https://bharatgentechnologies.vercel.app/contact"
+          href="https://calendly.com/hrbharatgen/30min"
           target="_blank"
           rel="noopener noreferrer"
         >
