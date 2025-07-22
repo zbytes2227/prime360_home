@@ -76,6 +76,10 @@ export default function Footer(): React.ReactElement {
       name: "Careers",
       href: "https://bharatgentechnologies.vercel.app/careers",
     },
+    {
+      name: "Brochure",
+      href: "https://drive.google.com/file/d/1UG2nL4X7FeFMzURf8kiFQhpxAxMXkCsh/view?usp=sharing",
+    },
   ];
 
   return (
@@ -85,7 +89,7 @@ export default function Footer(): React.ReactElement {
           {/* Top Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
             <div className="lg:col-span-2">
-              <Link href="/" className="mb-4 inline-block">
+              <Link href="https://bharatgentechnologies.vercel.app" className="mb-4 inline-block">
                 <img
                   src="/Bhlogo.png"
                   alt="BharatGen Logo"

@@ -4,7 +4,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { useState, ReactNode } from "react";
 import clsx from "clsx";
 
@@ -13,7 +18,8 @@ const tools = [
   {
     label: "Business Management",
     image: "/dashboard.png",
-    summary: "Centralized dashboard for analytics, team coordination, and tracking.",
+    summary:
+      "Centralized dashboard for analytics, team coordination, and tracking.",
     highlightColor: "from-indigo-500 to-violet-600",
   },
   {
@@ -51,28 +57,89 @@ const tools = [
     image: "/users.png",
     summary: "Employee management, scheduling, payroll, compliance.",
     highlightColor: "from-rose-500 to-pink-600",
-  }
+  },
 ];
 
 const businessFeatures = [
-  { title: "Inventory", icon: "🧑‍💼", content: "Real-time tracking, automated replenishment, multi-location management." },
-  { title: "Billing", icon: "💰", content: "Integrated invoicing, payments, expense/receipt workflows." },
-  { title: "Orders", icon: "📦", content: "Full order management, fulfillment, and tracking." },
-  { title: "Reminders", icon: "🔔", content: "Automated follow-ups, dues, and custom reminders." },
-  { title: "Customers", icon: "👥", content: "Client segmentation, communication, activity history." },
-  { title: "Transactions", icon: "💸", content: "Secure finance, records, sync with accounting tools." }
+  {
+    title: "Inventory",
+    icon: "🧑‍💼",
+    content:
+      "Real-time tracking, automated replenishment, multi-location management.",
+  },
+  {
+    title: "Billing",
+    icon: "💰",
+    content: "Integrated invoicing, payments, expense/receipt workflows.",
+  },
+  {
+    title: "Orders",
+    icon: "📦",
+    content: "Full order management, fulfillment, and tracking.",
+  },
+  {
+    title: "Reminders",
+    icon: "🔔",
+    content: "Automated follow-ups, dues, and custom reminders.",
+  },
+  {
+    title: "Customers",
+    icon: "👥",
+    content: "Client segmentation, communication, activity history.",
+  },
+  {
+    title: "Transactions",
+    icon: "💸",
+    content: "Secure finance, records, sync with accounting tools.",
+  },
 ];
 
 const primeFeatures = [
-  { icon: "🆓", title: "Free Plan", content: "Start for free. No credit card required. Upgrade anytime." },
-  { icon: "👥", title: "Unlimited Users", content: "Your whole team—no per-seat charges." },
-  { icon: "📞", title: "Unlimited Contacts", content: "Add, segment, and manage unlimited clients." },
-  { icon: "🔄", title: "Sales Pipelines", content: "Track every deal, automate stages, forecast revenue." },
-  { icon: "💾", title: "Data Storage", content: "Secure, encrypted, limitless." },
-  { icon: "📱", title: "Mobile Ready", content: "Full-featured iOS/Android apps." },
-  { icon: "🔗", title: "Integrations", content: "Works with WhatsApp, Gmail, Slack, and more." },
-  { icon: "🔒", title: "Security", content: "Bank-grade, GDPR/ISO-compliant, privacy-first." },
-  { icon: "👨‍💻", title: "24/7 Support", content: "Dedicated helpdesk, live chat, knowledgebase." }
+  {
+    icon: "🆓",
+    title: "Free Plan",
+    content: "Start for free. No credit card required. Upgrade anytime.",
+  },
+  {
+    icon: "👥",
+    title: "Unlimited Users",
+    content: "Your whole team—no per-seat charges.",
+  },
+  {
+    icon: "📞",
+    title: "Unlimited Contacts",
+    content: "Add, segment, and manage unlimited clients.",
+  },
+  {
+    icon: "🔄",
+    title: "Sales Pipelines",
+    content: "Track every deal, automate stages, forecast revenue.",
+  },
+  {
+    icon: "💾",
+    title: "Data Storage",
+    content: "Secure, encrypted, limitless.",
+  },
+  {
+    icon: "📱",
+    title: "Mobile Ready",
+    content: "Full-featured iOS/Android apps.",
+  },
+  {
+    icon: "🔗",
+    title: "Integrations",
+    content: "Works with WhatsApp, Gmail, Slack, and more.",
+  },
+  {
+    icon: "🔒",
+    title: "Security",
+    content: "Bank-grade, GDPR/ISO-compliant, privacy-first.",
+  },
+  {
+    icon: "👨‍💻",
+    title: "24/7 Support",
+    content: "Dedicated helpdesk, live chat, knowledgebase.",
+  },
 ];
 
 // ===== Animation Helpers =====
@@ -81,7 +148,11 @@ interface AnimateOnScrollProps {
   delay?: number;
   className?: string;
 }
-function AnimateOnScroll({ children, delay = 0, className = "" }: AnimateOnScrollProps) {
+function AnimateOnScroll({
+  children,
+  delay = 0,
+  className = "",
+}: AnimateOnScrollProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -89,7 +160,9 @@ function AnimateOnScroll({ children, delay = 0, className = "" }: AnimateOnScrol
       transition={{ duration: 0.6, ease: "easeOut", delay }}
       viewport={{ once: true }}
       className={className}
-    >{children}</motion.div>
+    >
+      {children}
+    </motion.div>
   );
 }
 
@@ -106,16 +179,18 @@ function AnimatePop({ children, delay = 0, className = "" }: AnimatePopProps) {
       transition={{ duration: 0.4, ease: [0.175, 0.885, 0.32, 1.275], delay }}
       viewport={{ once: true }}
       className={className}
-    >{children}</motion.div>
+    >
+      {children}
+    </motion.div>
   );
 }
-
 
 // ===== Main Component =====
 const Home: NextPage = () => {
   const [hoveredToolIdx, setHoveredToolIdx] = useState<number | null>(null);
   const [clickedToolIdx, setClickedToolIdx] = useState(0);
-  const displayToolIdx = hoveredToolIdx !== null ? hoveredToolIdx : clickedToolIdx;
+  const displayToolIdx =
+    hoveredToolIdx !== null ? hoveredToolIdx : clickedToolIdx;
   const { scrollYProgress } = useScroll();
   const titleScale = useTransform(scrollYProgress, [0, 0.1], [1.05, 1]);
 
@@ -123,21 +198,45 @@ const Home: NextPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-200/60 via-white/60 to-blue-100/60 font-sans antialiased overflow-x-hidden">
       <Head>
         <title>Prime360 CRM — Your Smart Partner in Business Growth</title>
-        <meta name="description" content="Discover Prime360 CRM by BharatGen Technologies for real-time client identity, orders, and data management." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta
+          name="description"
+          content="Discover Prime360 CRM by BharatGen Technologies for real-time client identity, orders, and data management."
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
       </Head>
 
       {/* Animated, Modern Glassy Background */}
       <div className="fixed -z-10 inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gradient-to-br from-blue-400/40 to-transparent filter blur-3xl mix-blend-multiply"
-          animate={{ x: [0, 10, -5, 0], y: [0, -20, 15, 0], rotate: [0, 2, -1, 0] }}
-          transition={{ duration: 16, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          animate={{
+            x: [0, 10, -5, 0],
+            y: [0, -20, 15, 0],
+            rotate: [0, 2, -1, 0],
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
         />
         <motion.div
           className="absolute -bottom-16 -right-16 w-96 h-96 rounded-full bg-gradient-to-br from-green-300/40 to-transparent filter blur-3xl mix-blend-multiply"
-          animate={{ x: [0, -15, 10, 0], y: [0, 25, -15, 0], rotate: [0, -3, 1, 0] }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          animate={{
+            x: [0, -15, 10, 0],
+            y: [0, 25, -15, 0],
+            rotate: [0, -3, 1, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
         />
       </div>
 
@@ -152,20 +251,49 @@ const Home: NextPage = () => {
           >
             Introducing Prime360 CRM
           </motion.h1>
-          <AnimateOnScroll delay={0.2} className="mt-6 text-3xl font-medium text-gray-700">
+
+          <AnimateOnScroll
+            delay={0.2}
+            className="mt-6 text-3xl font-medium text-gray-700"
+          >
             Your Smart Partner in Business Growth!
           </AnimateOnScroll>
-          <AnimateOnScroll delay={0.3} className="mt-4 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto">
-            Over 150 businesses registered with Prime360 since 2025—making it a widely used, customizable CRM solution.
+          <AnimateOnScroll
+            delay={0.3}
+            className="mt-4 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto"
+          >
+            Over 150 businesses registered with Prime360 since 2025—making it a
+            widely used, customizable CRM solution.
           </AnimateOnScroll>
-          <AnimateOnScroll delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <a
+            href="https://drive.google.com/uc?export=download&id=1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-block"
+            aria-label="Download Brochure"
+          >
+            <button
+              type="button"
+              className="flex items-center gap-2 px-6 py-3 mt-8 md:mt-10 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 hover:bg-gradient-to-br hover:from-teal-500 hover:to-teal-600 text-white font-semibold shadow-md border border-green-700 transition-colors duration-300"
+              style={{ fontSize: "1.1rem", minWidth: 168 }}
+            >
+              <span className="mr-2" role="img" aria-label="download">
+                💾
+              </span>
+              <span>Download Brochure</span>
+            </button>
+          </a>
+          <AnimateOnScroll
+            delay={0.4}
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+          >
             <a
               href="https://wa.me/919214549877?text=Hello%2C%20I%27d%20like%20to%20chat%20about%20a%20demo!"
               className="relative group flex items-center justify-center gap-2 px-5 py-3 rounded-xl shadow-md transition-all border-none text-white font-semibold text-sm sm:text-base"
               style={{
-                backgroundColor: '#25D366',
-                boxShadow: '0 4px 14px 0 rgba(37, 180, 85, 0.25)',
-                minWidth: 170
+                backgroundColor: "#25D366",
+                boxShadow: "0 4px 14px 0 rgba(37, 180, 85, 0.25)",
+                minWidth: 170,
               }}
               aria-label="Chat on WhatsApp"
               target="_blank"
@@ -194,7 +322,7 @@ const Home: NextPage = () => {
                 type="button"
                 className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-2xl hover:shadow-lg transition-all"
                 style={{
-                  fontFamily: "inherit"
+                  fontFamily: "inherit",
                 }}
               >
                 Get Started — It’s Free
@@ -210,7 +338,10 @@ const Home: NextPage = () => {
               More Than Just a CRM
             </h2>
             <div className="flex flex-col md:flex-row w-full md:items-center md:space-x-8 gap-8 md:gap-0">
-              <nav aria-label="Tool Tabs" className="w-full md:w-56 flex-shrink-0">
+              <nav
+                aria-label="Tool Tabs"
+                className="w-full md:w-56 flex-shrink-0"
+              >
                 <ul className="space-y-3">
                   {tools.map((tool, idx) => (
                     <motion.li
@@ -226,8 +357,12 @@ const Home: NextPage = () => {
                       onMouseEnter={() => setHoveredToolIdx(idx)}
                       onMouseLeave={() => setHoveredToolIdx(null)}
                       onClick={() => setClickedToolIdx(idx)}
-                      onKeyDown={e => {
-                        if ((e as React.KeyboardEvent).key === "Enter" || (e as React.KeyboardEvent).key === " ") setClickedToolIdx(idx);
+                      onKeyDown={(e) => {
+                        if (
+                          (e as React.KeyboardEvent).key === "Enter" ||
+                          (e as React.KeyboardEvent).key === " "
+                        )
+                          setClickedToolIdx(idx);
                       }}
                     >
                       <span
@@ -266,7 +401,9 @@ const Home: NextPage = () => {
                       transition={{ duration: 0.33, ease: "easeInOut" }}
                       className={clsx(
                         "absolute left-0 top-0 w-full h-full transition-opacity",
-                        displayToolIdx === idx ? "z-10" : "z-0 pointer-events-none"
+                        displayToolIdx === idx
+                          ? "z-10"
+                          : "z-0 pointer-events-none"
                       )}
                       style={{}}
                     >
@@ -284,10 +421,14 @@ const Home: NextPage = () => {
                     </motion.div>
                   ))}
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/20 via-black/5 to-transparent p-6 text-white z-20">
-                    <h3 className={`text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${tools[displayToolIdx].highlightColor} mb-2`}>
+                    <h3
+                      className={`text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${tools[displayToolIdx].highlightColor} mb-2`}
+                    >
                       {tools[displayToolIdx].label}
                     </h3>
-                    <p className="text-white/90">{tools[displayToolIdx].summary}</p>
+                    <p className="text-white/90">
+                      {tools[displayToolIdx].summary}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -295,8 +436,10 @@ const Home: NextPage = () => {
           </div>
         </AnimateOnScroll>
 
-
         {/* === Business Coverage Features === */}
+        <h2 className="text-2xl mt-20 sm:text-4xl font-extrabold mb-6 sm:mb-8 text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-blue-700 animate-pulse-slow text-center">
+          Cover Any Kind of Business with Prime360 CRM
+        </h2>
         <AnimateOnScroll className="mt-24 px-4 flex justify-center">
           <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
             {businessFeatures.map((feat, idx) => (
@@ -318,7 +461,9 @@ const Home: NextPage = () => {
                   {feat.icon}
                 </motion.span>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{feat.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {feat.title}
+                  </h3>
                   <p className="mt-2 text-gray-600">{feat.content}</p>
                 </div>
               </motion.div>
@@ -332,7 +477,11 @@ const Home: NextPage = () => {
             <motion.div
               className="absolute -right-16 -top-8 w-56 h-56 bg-gradient-to-r from-blue-400/40 to-transparent rounded-full blur-3xl -z-10 animate-[float_16s_ease-in-out_infinite] pointer-events-none"
               animate={{ x: [0, 6, -3, 0], y: [0, -8, 6, 0] }}
-              transition={{ duration: 16, repeat: Infinity, repeatType: "reverse" }}
+              transition={{
+                duration: 16,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             />
             <h2 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-emerald-600 mb-8 text-center">
               Prime360 CRM Features
@@ -348,8 +497,12 @@ const Home: NextPage = () => {
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <span className="text-2xl mb-2" aria-hidden>{feature.icon}</span>
-                  <h3 className="font-semibold text-gray-900">{feature.title}</h3>
+                  <span className="text-2xl mb-2" aria-hidden>
+                    {feature.icon}
+                  </span>
+                  <h3 className="font-semibold text-gray-900">
+                    {feature.title}
+                  </h3>
                   <p className="text-gray-600 text-sm sm:text-base mt-2 flex-1">
                     {feature.content}
                   </p>
@@ -362,20 +515,42 @@ const Home: NextPage = () => {
         {/* === Final Call to Action === */}
         <section className="mt-24 mb-28 flex justify-center" id="demo">
           <AnimatePop>
-            <a
-              href="https://calendly.com/hrbharatgen/30min"
-              className="group relative inline-block"
-              aria-label="Book Live Demo"
-            >
-              <button
-                type="button"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/90 hover:bg-white text-gray-800 font-semibold shadow-md border border-gray-200"
-                style={{ fontSize: "1.1rem", minWidth: 168 }}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://calendly.com/hrbharatgen/30min"
+                className="group relative inline-block"
+                aria-label="Book Live Demo"
               >
-                <span className="mr-2" role="img" aria-label="calendar">📅</span>
-                <span>Book Demo</span>
-              </button>
-            </a>
+                <button
+                  type="button"
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/90 hover:bg-white text-gray-800 font-semibold shadow-md border border-gray-200"
+                  style={{ fontSize: "1.1rem", minWidth: 168 }}
+                >
+                  <span className="mr-2" role="img" aria-label="calendar">
+                    📅
+                  </span>
+                  <span>Book Demo</span>
+                </button>
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-block"
+                aria-label="Download Brochure"
+              >
+                <button
+                  type="button"
+                  className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-br from-green-300 to-green-400 hover:bg-gradient-to-br hover:from-green-400 hover:to-green-500 text-white font-semibold shadow-md border border-green-700 transition-colors duration-300"
+                  style={{ fontSize: "1.1rem", minWidth: 168 }}
+                >
+                  <span className="mr-2" role="img" aria-label="download">
+                    📥
+                  </span>
+                  <span>Download Brochure</span>
+                </button>
+              </a>
+            </div>
           </AnimatePop>
         </section>
       </main>
