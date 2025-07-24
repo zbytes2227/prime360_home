@@ -266,7 +266,7 @@ const Home: NextPage = () => {
             widely used, customizable CRM solution.
           </AnimateOnScroll>
           <a
-            href="https://drive.google.com/uc?export=download&id=1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X"
+            href="https://drive.google.com/file/d/1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-block"
@@ -533,7 +533,7 @@ const Home: NextPage = () => {
                 </button>
               </a>
               <a
-                href="https://drive.google.com/uc?export=download&id=1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X"
+                href="https://drive.google.com/file/d/1rDEZigr2vq3z1u3gw-JLLNHY_Vw0742X/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-block"
