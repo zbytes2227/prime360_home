@@ -515,7 +515,7 @@ const Home: NextPage = () => {
         <PricingCalculator />
 
         {/* === Final Call to Action === */}
-        <section className="mt-24 mb-28 flex justify-center" id="demo">
+        <section className="mt-18 mb-28 flex justify-center" id="demo">
           <AnimatePop>
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <a

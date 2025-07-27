@@ -11,7 +11,6 @@ interface PriceStructure {
 }
 
 const PricingCalculator: React.FC = () => {
-  const [users, setUsers] = useState<number>(1);
   const [planType, setPlanType] = useState<PlanType>("plan1");
   const [plan, setPlan] = useState<Plan>("2year");
 
@@ -29,47 +28,57 @@ const PricingCalculator: React.FC = () => {
   };
 
   const calculatePrice = (): number => {
-    return users * prices[planType][plan];
+    return prices[planType][plan];
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md justify-center mx-auto mt-10">
-      <h1 className="text-2xl font-bold text-center mb-6">
-        Prime360 CRM Pricing Calculator
-      </h1>
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Select Plan Type:</label>
-        <select
-          id="planType"
-          value={planType}
-          onChange={(e) => setPlanType(e.target.value as PlanType)}
-          className="w-full p-2 border rounded"
-        >
-          <option value="plan1">Plan 1 (With App + Website)</option>
-          <option value="plan2">Plan 2 (Only Website)</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Select Plan:</label>
-        <select
-          id="plan"
-          value={plan}
-          onChange={(e) => setPlan(e.target.value as Plan)}
-          className="w-full p-2 border rounded"
-        >
-          <option value="2year">2-Year Plan</option>
-          <option value="1year">1-Year Plan</option>
-          <option value="monthly">Monthly Plan</option>
-        </select>
-      </div>
-      <div className="mt-6">
-        <h2 className="text-lg font-semibold">Estimated Cost:</h2>
-        <p className="text-xl font-bold text-green-600">
-          ₹{calculatePrice()} {plan === "monthly" ? "/month" : ""}
-        </p>
-      </div>
-      <div className="mt-4 text-gray-600">
-        <p>* 30 Days Free License available</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-gray-50 to-indigo-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform transition-all hover:shadow-3xl">
+        <h1 className="text-3xl font-extrabold text-center mb-8 bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
+          Prime360 CRM Pricing
+        </h1>
+        <div className="mb-6">
+          <label className="block text-gray-700 font-semibold mb-2">Plan Type</label>
+          <select
+            id="planType"
+            value={planType}
+            onChange={(e) => setPlanType(e.target.value as PlanType)}
+            className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all bg-gray-50 hover:bg-white appearance-none"
+          >
+            <option value="plan1">Plan 1 (App + Website)</option>
+            <option value="plan2">Plan 2 (Website Only)</option>
+          </select>
+        </div>
+
+        <div className="mb-8">
+          <label className="block text-gray-700 font-semibold mb-2">Billing Plan</label>
+          <select
+            id="plan"
+            value={plan}
+            onChange={(e) => setPlan(e.target.value as Plan)}
+            className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all bg-gray-50 hover:bg-white appearance-none"
+          >
+            <option value="2year">2-Year Plan</option>
+            <option value="1year">1-Year Plan</option>
+            <option value="monthly">Monthly Plan</option>
+          </select>
+        </div>
+
+        <div className="text-center bg-gray-50 p-6 rounded-xl border border-gray-100">
+          <h2 className="text-lg font-semibold text-gray-700 mb-2">Estimated Cost</h2>
+          <p className="text-4xl font-bold text-teal-600">
+            ₹{calculatePrice().toLocaleString()}
+            <span className="text-base text-gray-500 ml-2">
+              {plan === "monthly" ? "/month" : ""}
+            </span>
+          </p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-500 italic">
+            * 30 Days Free License Available
+          </p>
+        </div>
       </div>
     </div>
   );
