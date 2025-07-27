@@ -4,11 +4,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import PricingCalculator from "../components/PricingCalculator";
 import {
   motion,
   useScroll,
   useTransform,
-  AnimatePresence,
+  
 } from "framer-motion";
 import { useState, ReactNode } from "react";
 import clsx from "clsx";
@@ -511,11 +512,12 @@ const Home: NextPage = () => {
             </div>
           </div>
         </AnimateOnScroll>
+        <PricingCalculator />
 
         {/* === Final Call to Action === */}
         <section className="mt-24 mb-28 flex justify-center" id="demo">
           <AnimatePop>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <a
                 href="https://calendly.com/hrbharatgen/30min"
                 className="group relative inline-block"
